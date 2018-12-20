@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 
 require("./routes/userRoutes")(app);
+require("./routes/updateRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
