@@ -1,7 +1,7 @@
 const { check, validationResult } = require("express-validator/check");
 
 module.exports = app => {
-  (req, res) => {
+  app.post("/user/register", (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
@@ -15,5 +15,5 @@ module.exports = app => {
         res.redirect("/");
       }
     );
-  };
+  });
 };
