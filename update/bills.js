@@ -1,6 +1,7 @@
 var _ = require("lodash");
 var mysql = require("mysql");
-var db = require("./db");
+const fetch = require("node-fetch");
+var db = require("../db");
 
 var url = "../data.json";
 var values = [];
