@@ -8,7 +8,7 @@ import platform
 import re
 import htmlentitydefs
 import json
-from pytz import timezone
+# from pytz import timezone
 import datetime
 import time
 from lxml import html, etree
@@ -43,9 +43,9 @@ scraper.user_agent = "unitedstates/congress (https://github.com/unitedstates/con
 
 
 def format_datetime(obj):
-    if isinstance(obj, datetime.datetime):
-        return eastern_time_zone.localize(obj.replace(microsecond=0)).isoformat()
-    elif isinstance(obj, datetime.date):
+   # if isinstance(obj, datetime.datetime):
+    #    return eastern_time_zone.localize(obj.replace(microsecond=0)).isoformat()
+    if isinstance(obj, datetime.date):
         return obj.isoformat()
     elif isinstance(obj, (str, unicode)):
         return obj
