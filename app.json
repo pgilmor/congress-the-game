@@ -1,0 +1,25 @@
+{
+  "name": "congress-the-game",
+  "scripts": {
+  },
+  "env": {
+    "JAWSDB_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "jawsdb",
+    "scheduler"
+  ],
+  "stack": "heroku-18",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
