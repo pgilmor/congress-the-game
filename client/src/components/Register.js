@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+// function errors() {
+//   if (!errors) {
+//     return null;
+//   } else {
+//     return <ul>errors.map((error)=>{<li>error.message</li>})</ul>;
+//   }
+// }
 
 class Register extends Component {
   render() {
@@ -12,9 +19,9 @@ class Register extends Component {
                 name="username"
                 type="text"
                 className="validate"
-                required
-                minLength="4"
-                maxLength="24"
+                //required
+                //minLength="4"
+                //maxLength="24"
               />
               <label htmlFor="username">Username</label>
               <span
@@ -30,7 +37,7 @@ class Register extends Component {
                 name="email"
                 type="email"
                 className="validate"
-                required
+                //required
               />
               <label htmlFor="email">Email </label>
               <span
@@ -46,9 +53,9 @@ class Register extends Component {
                 name="password"
                 type="password"
                 className="validate"
-                required
-                minLength="12"
-                maxLength="100"
+                //  required
+                //  minLength="12"
+                //  maxLength="100"
               />
               <label htmlFor="password">Password</label>
             </div>

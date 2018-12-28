@@ -1,30 +1,49 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
+  renderContent() {
+    switch (this.props.auth) {
+      case null:
+        return;
+      case false:
+        return (
+          <li>
+            <a href="/auth/google">Login With Google</a>
+          </li>
+        );
+      default:
+        return [
+          <li key="1">
+            <Link to="/register">Register</Link>
+          </li>,
+          <li key="3">
+            <Link to="/profile">Profile</Link>
+          </li>,
+          <li key="2">
+            <a href="/login">Login</a>
+          </li>
+        ];
+    }
+  }
+
   render() {
     return (
-      <div>
-        <nav>
-          <div className="nav-wrapper">
-            <a href="/" className="brand-logo">
-              Logo
-            </a>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>
-                <a href="sass.html">Sass</a>
-              </li>
-              <li>
-                <a href="badges.html">Components</a>
-              </li>
-              <li>
-                <a href="collapsible.html">JavaScript</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+      <nav>
+        <div className="nav-wrapper indigo">
+          <Link to={this.props.auth ? "/" : "/"} className="left brand-logo">
+            Congress: The Game
+          </Link>
+          <ul className="right">{this.renderContent()}</ul>
+        </div>
+      </nav>
     );
   }
 }
 
-export default Header;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Header);

@@ -1,3 +1,4 @@
 module.exports = {
-  dbUrl: process.env.JAWSDB_URL
+  dbUrl: process.env.JAWSDB_URL,
+  cookieKey: process.env.COOKIEKEY
 };

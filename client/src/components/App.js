@@ -5,6 +5,7 @@ import * as actions from "../actions";
 
 import Register from "./Register";
 import Header from "./Header";
+import Landing from "./Landing";
 
 class App extends Component {
   render() {
@@ -13,7 +14,8 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={Register} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
           </div>
         </BrowserRouter>
       </div>
