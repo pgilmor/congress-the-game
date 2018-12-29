@@ -2,11 +2,16 @@ const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
-const cookieSession = require("cookie-session");
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
+const passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy;
+const MySQLStore = require("express-mysql-session")(session);
+const db = require("./db");
 const keys = require("./config/keys");
 require("./services/passport");
+
+const sessionStore = new MySQLStore({} /* session store options */, db);
 
 const app = express();
 
@@ -16,9 +21,13 @@ app.use(cookieParser());
 app.use(expressValidator());
 //app.set("trust proxy", 1); // trust first proxy
 app.use(
-  cookieSession({
+  session({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    secret: [keys.cookieKey],
+    resave: false,
+    name: "SessionID",
+    store: sessionStore,
+    saveUninitialized: false
   })
 );
 app.use(passport.initialize());

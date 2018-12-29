@@ -5,9 +5,15 @@ import * as actions from "../actions";
 
 import Register from "./Register";
 import Header from "./Header";
+import Dashboard from "./Dashboard";
 import Landing from "./Landing";
+import Login from "./Login";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div className="container">
@@ -15,6 +21,8 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Dashboard} />
             <Route exact path="/register" component={Register} />
           </div>
         </BrowserRouter>

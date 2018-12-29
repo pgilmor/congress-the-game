@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator/check");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const passport = require("passport");
 
 const v = require("../middlewares/validation");
 
@@ -22,14 +23,30 @@ module.exports = app => {
         [username, email, hash],
         (error, results, fields) => {
           if (error) throw error;
-          console.log(results.insertId);
           var userId = results.insertId;
-          console.log("userId: " + userId);
           req.login(userId, function(err) {
-            res.redirect("/");
+            res.redirect("/profile");
           });
         }
       );
     });
+  });
+
+  app.post(
+    "/user/login",
+    passport.authenticate("local", { failureRedirect: "/login" }),
+    function(req, res) {
+      res.redirect("/profile");
+    }
+  );
+
+  app.get("/api/current_user", (req, res) => {
+    res.json(req.user);
+    return;
+  });
+
+  app.get("/api/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
   });
 };
