@@ -12,34 +12,25 @@ class Login extends Component {
                 name="username"
                 type="text"
                 className="validate"
-                //required
-                //minLength="4"
-                //maxLength="24"
               />
-              <label htmlFor="username">Username</label>
-              <span
-                className="helper-text"
-                data-error="Username must be between 4 and 24 characters"
-              />
+              <label htmlFor="username">Username or Email</label>
+              <span className="helper-text" />
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                className="validate"
-                //  required
-                //  minLength="12"
-                //  maxLength="100"
-              />
+              <input id="password" name="password" type="password" />
               <label htmlFor="password">Password</label>
             </div>
           </div>
 
           <button type="submit" className="waves-effect waves-light btn">
             Log in
+          </button>
+        </form>
+        <form method="get" action="auth/google">
+          <button type="submit" className="waves-effect waves-light btn">
+            Log in with Google
           </button>
         </form>
       </div>

@@ -40,7 +40,6 @@ class Header extends Component {
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>
-        {console.log(this.props.user)}
       </nav>
     );
   }
