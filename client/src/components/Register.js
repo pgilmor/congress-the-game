@@ -1,80 +1,89 @@
 import React, { Component } from "react";
-// function errors() {
-//   if (!errors) {
-//     return null;
-//   } else {
-//     return <ul>errors.map((error)=>{<li>error.message</li>})</ul>;
-//   }
-// }
 
 class Register extends Component {
   render() {
     return (
-      <div className="container row">
+      <div className="container w-75">
         <form method="post" action="/user/register" className="col s12">
-          <div className="row">
-            <div className="input-field col s12">
+          <h4>Register for a free account</h4>
+          <div class="form-row">
+            <div class="form-group col">
               <input
-                id="username"
-                name="username"
                 type="text"
-                className="validate"
-                //required
-                //minLength="4"
-                //maxLength="24"
+                class="form-control"
+                name="first_name"
+                placeholder="First name"
               />
-              <label htmlFor="username">Username</label>
-              <span
-                className="helper-text"
-                data-error="Username must be between 4 and 24 characters"
+            </div>
+            <div class="form-group col">
+              <input
+                type="text"
+                class="form-control"
+                name="last_name"
+                placeholder="Last name"
               />
             </div>
           </div>
-          <div className="row">
-            <div className="input-field col s12">
+          <div className="form-row">
+            <div className="form-group col">
               <input
-                id="email"
-                name="email"
-                type="email"
-                className="validate"
-                //required
+                type="text"
+                class="form-control"
+                name="usernameReg"
+                aria-describedby="usernameHelp"
+                placeholder="Pick a username"
               />
-              <label htmlFor="email">Email </label>
-              <span
-                className="helper-text"
-                data-error="Email must be valid and between 4 and 100 characters"
-              />
+              <small id="emailHelp" class="form-text text-muted">
+                Username must be between 4 and 24 characters and can only
+                contain letters, numbers, or underscores
+              </small>
             </div>
           </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                className="validate"
-                //  required
-                //  minLength="12"
-                //  maxLength="100"
-              />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                type="password"
-                className="validate"
-                id="passwordMatch"
-                name="passwordMatch"
-              />
 
-              <label htmlFor="passwordMatch">Confirm Password</label>
+          <div className="form-row">
+            <div className="form-group col">
+              <input
+                type="email"
+                class="form-control"
+                name="emailReg"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
+              <small id="emailHelp" class="form-text text-muted">
+                We'll never share your email with anyone else.
+              </small>
             </div>
           </div>
-          <button type="submit" className="waves-effect waves-light btn">
-            Register
-          </button>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <input
+                type="password"
+                class="form-control"
+                name="passwordReg"
+                placeholder="Enter a Password"
+              />
+              <small id="emailHelp" class="form-text text-muted">
+                Password must be at least 8 characters with one lowercase letter
+                , uppercase letter, a number, and a special character
+              </small>
+            </div>
+            <div class="form-group col">
+              <input
+                type="password"
+                class="form-control"
+                name="passwordMatch"
+                placeholder="Confirm Password"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <button type="submit" className="btn btn-primary">
+                Register
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );

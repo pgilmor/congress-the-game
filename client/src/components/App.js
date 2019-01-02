@@ -5,9 +5,10 @@ import * as actions from "../actions";
 
 import Register from "./Register";
 import Header from "./Header";
+import Footer from "./Footer";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
-import Login from "./Login";
+import League from "./League";
 
 class App extends Component {
   componentDidMount() {
@@ -21,9 +22,10 @@ class App extends Component {
           <div>
             <Header />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/league" component={League} />
             <Route exact path="/profile" component={Dashboard} />
             <Route exact path="/register" component={Register} />
+            <Footer />
           </div>
         </BrowserRouter>
       </div>

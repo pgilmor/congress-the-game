@@ -13,14 +13,20 @@ module.exports = app => {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    const { username, email, password } = req.body;
+    const {
+      usernameReg,
+      emailReg,
+      passwordReg,
+      first_name,
+      last_name
+    } = req.body;
 
     const db = require("../db");
 
-    bcrypt.hash(password, saltRounds, (err, hash) => {
+    bcrypt.hash(passwordReg, saltRounds, (err, hash) => {
       db.query(
-        "INSERT INTO user (username, email, password) VALUES (?,?,?)",
-        [username, email, hash],
+        "INSERT INTO user (username, email, password, first_name, last_name) VALUES (?,?,?,?,?)",
+        [usernameReg, emailReg, hash, first_name, last_name],
         (error, results, fields) => {
           if (error) throw error;
           var userId = results.insertId;
@@ -32,32 +38,20 @@ module.exports = app => {
     });
   });
 
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile", "email"]
-    })
-  );
-
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-      res.redirect("/surveys");
-    }
-  );
-
   app.post(
     "/user/login",
-    passport.authenticate("local", { failureRedirect: "/login" }),
+    passport.authenticate("local", { failureRedirect: "/" }),
     function(req, res) {
       res.redirect("/profile");
     }
   );
 
   app.get("/api/current_user", (req, res) => {
-    res.json(req.user);
-    return;
+    if (req.user === undefined) {
+      res.send(null);
+    } else {
+      res.send(req.user);
+    }
   });
 
   app.get("/api/logout", function(req, res) {

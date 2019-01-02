@@ -3,37 +3,30 @@ import React, { Component } from "react";
 class Login extends Component {
   render() {
     return (
-      <div className="container row">
-        <form method="post" action="/user/login" className="col s12">
-          <div className="row">
-            <div className="input-field col s12">
-              <input
-                id="username"
-                name="username"
-                type="text"
-                className="validate"
-              />
-              <label htmlFor="username">Username or Email</label>
-              <span className="helper-text" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="password" name="password" type="password" />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-
-          <button type="submit" className="waves-effect waves-light btn">
-            Log in
-          </button>
-        </form>
-        <form method="get" action="auth/google">
-          <button type="submit" className="waves-effect waves-light btn">
-            Log in with Google
-          </button>
-        </form>
-      </div>
+      <form method="post" action="/user/login">
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            className="form-control"
+            name="username"
+            aria-describedby="username"
+            placeholder="Username or E-mail"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Sign in
+        </button>
+      </form>
     );
   }
 }

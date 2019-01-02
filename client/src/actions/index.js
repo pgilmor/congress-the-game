@@ -1,12 +1,18 @@
 import axios from "axios";
-import { FETCH_USER } from "./types";
+import { FETCH_USER, FETCH_LEAGUE } from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
+  console.log("res: " + res.data);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const fetchLeague = () => async dispatch => {
+  const res = await axios.get("/api/current_league");
+
+  dispatch({ type: FETCH_LEAGUE, payload: res.data });
+};
 // export const handleToken = token => async dispatch => {
 //   const res = await axios.post('/api/stripe', token);
 //
