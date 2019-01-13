@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator/check");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const passport = require("passport");
+var path = require("path");
 
 const v = require("../middlewares/validation");
 
