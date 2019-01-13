@@ -38,13 +38,12 @@ module.exports = app => {
     });
   });
 
-  app.post(
-    "/user/login",
-    passport.authenticate("local", { failureRedirect: "/" }),
-    function(req, res) {
-      res.redirect("/profile");
-    }
-  );
+  app.post("/user/login", passport.authenticate("local", {}), function(
+    req,
+    res
+  ) {
+    res.send(req.user);
+  });
 
   app.get("/api/current_user", (req, res) => {
     if (req.user === undefined) {
@@ -57,5 +56,9 @@ module.exports = app => {
   app.get("/api/logout", function(req, res) {
     req.logout();
     res.redirect("/");
+  });
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./"));
   });
 };

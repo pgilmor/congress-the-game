@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import LoginModal from "./LoginModal";
 
 class Header extends Component {
   renderContent() {
@@ -10,21 +9,23 @@ class Header extends Component {
         return;
       case false:
         return [
-          <li key="2" className="nav-item">
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-toggle="modal"
-              data-target="#loginModal"
-            >
+          <li key="2" className="nav-item ">
+            <Link className="nav-link" to="/login">
               Login
-            </button>
+            </Link>
+            {console.log(this.props)}
+          </li>,
+          <li key="2.1" className="nav-item ">
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+            {console.log(this.props)}
           </li>
         ];
       default:
         return [
           <li key="3" className="nav-item">
-            <Link className="nav-link" to="/league">
+            <Link className="nav-link " to="/league">
               Leagues
             </Link>
           </li>,
@@ -55,44 +56,28 @@ class Header extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <Link
-            to={this.props.user ? "/profile" : "/"}
-            className="navbar-brand"
-          >
-            Congress: The Game
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-end"
-            id="navbarSupportedContent"
-          >
-            <ul className="navbar-nav">{this.renderContent()}</ul>
-          </div>
-        </nav>
-
-        <div
-          className="modal fade"
-          id="loginModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="loginModalLabel"
-          aria-hidden="true"
+      <nav
+        className="container navbar navbar-expand-lg navbar-light"
+        id="mainNav"
+      >
+        <Link to={this.props.user ? "/profile" : "/"} className="navbar-brand">
+          Congress: The Game
+        </Link>
+        <button
+          className="navbar-toggler "
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <LoginModal />
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">{this.renderContent()}</ul>
         </div>
-      </div>
+      </nav>
     );
   }
 }

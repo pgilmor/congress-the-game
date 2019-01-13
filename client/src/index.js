@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css";
+//import "./css/style.js";
 import "jquery";
 import "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";

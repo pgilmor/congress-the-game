@@ -3,7 +3,6 @@ import { FETCH_USER, FETCH_LEAGUE } from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
-  console.log("res: " + res.data);
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
@@ -13,6 +12,19 @@ export const fetchLeague = () => async dispatch => {
 
   dispatch({ type: FETCH_LEAGUE, payload: res.data });
 };
+
+export const loginUser = (values, history) => async dispatch => {
+  const res = await axios.post("/user/login", values);
+  dispatch({ type: FETCH_USER, payload: res.data });
+  history.push("/profile");
+};
+
+export const registerUser = (values, history) => async dispatch => {
+  const res = await axios.post("/user/register", values);
+  dispatch({ type: FETCH_USER, payload: res.data });
+  history.push("/profile");
+};
+
 // export const handleToken = token => async dispatch => {
 //   const res = await axios.post('/api/stripe', token);
 //

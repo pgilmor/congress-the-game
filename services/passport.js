@@ -23,7 +23,10 @@ passport.use(
           return done(err);
         }
         if (results.length === 0) {
-          return done(null, false);
+          return done(null, false, {
+            message:
+              "Username/Email and Password Combination not found.  Try again."
+          });
         }
         const hash = results[0].password.toString();
         bcrypt.compare(password, hash, (err, response) => {
@@ -36,7 +39,10 @@ passport.use(
               last_name: results[0].last_name
             });
           } else {
-            return done(null, false);
+            return done(null, false, {
+              message:
+                "Username/Email and Password Combination not found.  Try again."
+            });
           }
         });
       }
