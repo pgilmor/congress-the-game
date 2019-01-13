@@ -35,6 +35,7 @@ app.use(passport.session());
 
 require("./routes/userRoutes")(app);
 require("./routes/leagueRoutes")(app);
+require("./routes/updateRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
