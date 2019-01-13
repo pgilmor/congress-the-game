@@ -2,7 +2,6 @@ const { validationResult } = require("express-validator/check");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const passport = require("passport");
-var path = require("path");
 
 const v = require("../middlewares/validation");
 
@@ -57,9 +56,5 @@ module.exports = app => {
   app.get("/api/logout", function(req, res) {
     req.logout();
     res.redirect("/");
-  });
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./"));
   });
 };
