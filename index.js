@@ -2,15 +2,39 @@ const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy;
+const MySQLStore = require("express-mysql-session")(session);
+const db = require("./db");
 const keys = require("./config/keys");
+require("./services/passport");
+
+const sessionStore = new MySQLStore({} /* session store options */, db);
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(expressValidator());
+//app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    secret: [keys.cookieKey],
+    resave: false,
+    name: "SessionID",
+    store: sessionStore,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./routes/userRoutes")(app);
+require("./routes/leagueRoutes")(app);
 require("./routes/updateRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {

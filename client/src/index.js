@@ -1,15 +1,20 @@
-import "materialize-css/dist/css/materialize.min.css";
-import "materialize-css/dist/js/materialize.min.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css";
+//import "./css/style.js";
+import "jquery";
+import "popper.js";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
 
 import App from "./components/App";
 import reducers from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(reducers, {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
